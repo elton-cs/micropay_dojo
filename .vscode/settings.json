@@ -1,0 +1,5 @@
+{
+    "cairo1.enableLanguageServer": true,
+    "cairo1.enableScarb": true,
+    "cairo1.languageServerPath": "/Users/zkl10/code/binaries/dojo_v1.1.2/dojo-language-server"
+}
