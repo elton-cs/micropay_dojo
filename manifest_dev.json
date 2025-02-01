@@ -1252,8 +1252,8 @@
   },
   "contracts": [
     {
-      "address": "0x5e006d3ede12aaef955792a702dfdfa732e7d586476a293a0695b7a4a4a366",
-      "class_hash": "0x4733f06f508a658a3b2527d666ea71c4c8b1b4365a1761964cf313b96ca1982",
+      "address": "0x3bebfc641b1810c5711e21a49a9e4902c58306949c6484d9f97e469eda01fe5",
+      "class_hash": "0x254097500cb3805953c91b00ef42987f1cb9542f903f8fb2b921541474dee64",
       "abi": [
         {
           "type": "impl",
@@ -1422,6 +1422,12 @@
         },
         {
           "type": "event",
+          "name": "micropay::components::tokens::TokenComponent::Event",
+          "kind": "enum",
+          "variants": []
+        },
+        {
+          "type": "event",
           "name": "micropay::systems::actions::actions::Event",
           "kind": "enum",
           "variants": [
@@ -1433,6 +1439,11 @@
             {
               "name": "WorldProviderEvent",
               "type": "dojo::contract::components::world_provider::world_provider_cpt::Event",
+              "kind": "nested"
+            },
+            {
+              "name": "TokenEvent",
+              "type": "micropay::components::tokens::TokenComponent::Event",
               "kind": "nested"
             }
           ]
@@ -1450,17 +1461,10 @@
   "models": [
     {
       "members": [],
-      "class_hash": "0x5bc682e3b7ced2f43281c417ae6ae36f0019a62251a1f161cacca4cb09eec87",
-      "tag": "micropay-Counter",
-      "selector": "0xc251999c5e4be36bdd853bc727e8a19aab6a8c232e3ccc8300a27379c684a6"
+      "class_hash": "0x6d2e8bf9f72d9c11cc880388f7c7acceb48687ee4f51bc445794b096e9c6793",
+      "tag": "micropay-Tokens",
+      "selector": "0x42b5d4d7cda807be0ae63ad7b26fef2a4b432f4db488251947c3f1c2d64f8f5"
     }
   ],
-  "events": [
-    {
-      "members": [],
-      "class_hash": "0x29a2585f07e862e68380d25d5bce5048b2d8676bc4281f0f8626be858a56c83",
-      "tag": "micropay-Incremented",
-      "selector": "0x1d37cead361cfab791fab9147ef2b727c817a19866187929dab1cdd1f56e73e"
-    }
-  ]
+  "events": []
 }

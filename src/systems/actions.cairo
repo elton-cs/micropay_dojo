@@ -9,31 +9,31 @@ trait IActions<T> {
 #[dojo::contract]
 pub mod actions {
     use super::{IActions};
+    use starknet::{get_caller_address};
 
-    use dojo::model::{ModelStorage};
-    use dojo::event::EventStorage;
-
-    use micropay::models::counter::Counter;
-
-    #[derive(Copy, Drop, Serde)]
-    #[dojo::event]
-    pub struct Incremented {
-        #[key]
-        pub id: felt252,
-        pub count: u64,
+    use micropay::components::tokens::TokenComponent;
+   
+    #[storage]
+    struct Storage {
+        #[substorage(v0)]
+        token_storage: TokenComponent::Storage,
     }
+
+    #[event]
+    #[derive(Drop, starknet::Event)]
+    enum Event {
+        TokenEvent: TokenComponent::Event,
+    }
+
+    component!(path: TokenComponent, storage: token_storage, event: TokenEvent);
+    impl token_impl = TokenComponent::BaseImpl<ContractState>;
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
         fn increment(ref self: ContractState) {
-            // Get the default world.
             let mut world = self.world_default();
-
-            let mut counter: Counter = world.read_model(0);
-            counter.count += 1;
-            world.write_model(@counter);
-
-            world.emit_event(@Incremented { id: 0, count: counter.count });
+            let user_address = get_caller_address();
+            let _user_tokens = token_impl::add_tokens(world, user_address, 1);
         }
     }
 
