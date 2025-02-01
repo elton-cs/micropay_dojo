@@ -1,27 +1,28 @@
+use starknet::ContractAddress;
 use dojo::world::WorldStorage;
 use dojo::model::ModelStorage;
 
-use micropay::models::counter::Counter;
+use micropay::models::tokens::Tokens;
 
 #[derive(Copy, Drop)]
-struct Store {
+pub struct Store {
     world: WorldStorage,
 }
 
 #[generate_trait]
-impl StoreImpl of StoreTrait {
+pub impl StoreImpl of StoreTrait {
     #[inline]
     fn new(world: WorldStorage) -> Store {
         Store { world: world }
     }
 
     #[inline]
-    fn read_counter(self: @Store, id: felt252) -> Counter {
+    fn read_tokens(self: @Store, id: ContractAddress) -> Tokens {
         self.world.read_model(id)
     }
 
     #[inline]
-    fn write_counter(ref self: Store, counter: @Counter) {
-        self.world.write_model(counter)
+    fn write_tokens(ref self: Store, tokens: @Tokens) {
+        self.world.write_model(tokens)
     }
 }
