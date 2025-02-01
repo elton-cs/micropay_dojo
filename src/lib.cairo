@@ -4,6 +4,10 @@ mod systems {
     mod actions;
 }
 
-pub mod models {
-    pub mod counter;
+mod models {
+    pub mod tokens;
+}
+
+mod components {
+    pub mod tokens;
 }
